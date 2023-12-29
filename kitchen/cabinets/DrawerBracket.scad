@@ -15,14 +15,15 @@ base_holes = [[7.9, 18.8], [7.9, 45.4]];
 base_hole_diameter = 3.6;
 
 // Tabs
-tab_width = 11.4;
-tab_length = 28 - 0.2; // 0.2 adjustment for printer calibration
+tab_width = 10.7;
+tab_length = 28 - 0.7; // 0.2 adjustment for printer calibration
 tab_height = 19;
 tab_wall_thickness = 2;
-tab_inset = [1.2, 1.2, 0];
+tab_inset = [2.8, 1.2, 0];
 // Gap between first two tabs
-tab_gap = 2.5;
+tab_gap = 2.5 + 0.5;
 nub_width = 6.3;
+nub_z = 7.4 + base_thickness;
 
 base_plate(base_width, base_length, base_thickness, base_notch, base_holes);
 //tab is 5 from edge
@@ -65,7 +66,7 @@ module tab(width, length, height, wall_thickness) {
     difference() {
         union() {
             cube([width, length, height]);
-            translate([0,(length + nub_width)/2, height/2])
+            translate([0,(length + nub_width)/2, nub_z])
                 nub();
         }
         translate([wall_thickness,wall_thickness, 0])
